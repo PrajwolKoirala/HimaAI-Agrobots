@@ -13,6 +13,7 @@ Agroबट is a decentralized agricultural supply chain management system built 
 - **Metamask** – Browser wallet to interact with blockchain.
 - **Next.js** – Frontend framework.
 - **pnpm / npm** – Package managers.
+- **gemini** - Google's Chatbot to help the users
 
 ---
 
