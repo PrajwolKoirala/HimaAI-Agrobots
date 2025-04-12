@@ -1,6 +1,6 @@
-# 🌾 Agroबट – Agricultural Supply Chain Management System
+# 🌾 Agroबट
 
-Agroबट is a decentralized agricultural supply chain management system built with Ethereum smart contracts and a modern frontend using Next.js. This project leverages **Truffle**, **Ganache**, **Metamask**, and **web3.js** to enable transparent and efficient management of agricultural goods.
+Agroबट is a decentralized agricultural supply chain management system built with Ethereum smart contracts and a modern frontend using Next.js. This project leverages **Truffle**, **Ganache**, **Metamask**, and **web3.js** to enable transparent and efficient management of agricultural goods. To help Farmer this project also uses google's **Gemini** for simple chatbot related to agriculture.
 
 ---
 
