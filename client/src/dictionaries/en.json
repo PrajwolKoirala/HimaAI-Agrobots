@@ -1,0 +1,15 @@
+{
+    "welcome": "Welcome to AGROपथ",
+    "connect_wallet": "Connect your wallet to start managing your agricultural supply chain",
+    "connect_metamask": "Connect with MetaMask",
+    "network_status": "Network Status: Active",
+    "need_help": "Need Help?",
+    "connecting": "Connecting...",
+    "install_metamask": "Please install MetaMask!",
+    "unknown_role": "Unknown role or role not assigned",
+    "welcome_role": "Welcome, {{role}}!",
+    "dashboard": "Dashboard",
+    "transaction_history": "Transaction History",
+    "connected_blockchain": "Connected to Blockchain",
+    "disconnect": "Disconnect"
+  }

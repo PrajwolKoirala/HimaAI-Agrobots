@@ -1,0 +1,15 @@
+{
+    "welcome": "Bienvenido a AgriSupplyChain",
+    "connect_wallet": "Conecte su billetera para comenzar a administrar su cadena de suministro agrícola",
+    "connect_metamask": "Conectar con MetaMask",
+    "network_status": "Estado de la Red: Activo",
+    "need_help": "¿Necesita Ayuda?",
+    "connecting": "Conectando...",
+    "install_metamask": "¡Por favor, instale MetaMask!",
+    "unknown_role": "Rol desconocido o no asignado",
+    "welcome_role": "¡Bienvenido, {{role}}!",
+    "dashboard": "Panel",
+    "transaction_history": "Historial de Transacciones",
+    "connected_blockchain": "Conectado a Blockchain",
+    "disconnect": "Desconectar"
+  }
