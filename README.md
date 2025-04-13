@@ -30,6 +30,33 @@ Agroबट is a decentralized agricultural supply chain management system built 
 
 ---
 
+
+## 🔧 DAPP Architecture
+
+**Components:**
+
+- **User Interface:**  
+  Built with Next.js, this is the frontend that interacts with users. It sends transactions to smart contracts using web3.js.
+
+- **Smart Contracts:**  
+  Written in Solidity, these contracts run on the Ethereum blockchain, handling data and transactions in a decentralized manner.
+
+- **Blockchain Network:**  
+  The Ethereum network (or Ganache for local development) provides the decentralized ledger that records all transactions transparently and securely.
+
+- **Wallet Integration:**  
+  Metamask integrates with the browser, allowing users to sign transactions and manage their keys securely.
+
+- **Development & Deployment Tools:**  
+  Truffle is used for compiling, deploying, and testing smart contracts. Ganache simulates a blockchain locally during development.
+
+- **Chatbot Assistance:**  
+  Powered by Google's Gemini, this component provides real-time agricultural support and information to users.
+
+This layered architecture ensures transparency, security, and decentralization, while also providing a user-friendly experience with real-time support.
+
+---
+
 ## 📦 Installation
 
 Follow the steps below to run the project locally.
