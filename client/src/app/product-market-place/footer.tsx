@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import Link from "next/link";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export function Footer() {
   return (
@@ -26,9 +26,9 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <div className="space-y-2">
-              <p>Patan Multiple Campus</p>
-              <p>project@gmail.com</p>
-              <p>9822558877</p>
+              <p>Team Agrobots</p>
+              <p>hiagro@gmail.com</p>
+              <p>9840462211</p>
             </div>
           </div>
           <div>
@@ -92,6 +92,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
