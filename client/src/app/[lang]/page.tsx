@@ -82,7 +82,7 @@ import {
 import { CategoryCard } from "../product-market-place/category-card";
 import { Footer } from "../product-market-place/footer";
 import { Separator } from "@radix-ui/react-select";
-import landing from './landing.png'
+import landing from "./landing.png";
 import Image from "next/image";
 import { Suspense } from "react";
 
@@ -96,49 +96,49 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-full justify-between"
-        >
-          {value
-            ? items.find((item) => item.id === Number(value))?.name
-            : placeholder}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
-        <Command>
-          <CommandInput
-            placeholder={`Search ${placeholder.toLowerCase()}...`}
-          />
-          <CommandEmpty>No {placeholder.toLowerCase()} found.</CommandEmpty>
-          <CommandGroup className="max-h-60 overflow-auto">
-            {items.map((item) => (
-              <CommandItem
-                key={item.id}
-                value={item.name}
-                onSelect={() => {
-                  onChange(item.id.toString());
-                  setOpen(false);
-                }}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === item.id.toString() ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                {item.name}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </Command>
-      </PopoverContent>
-    </Popover>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="w-full justify-between"
+          >
+            {value
+              ? items.find((item) => item.id === Number(value))?.name
+              : placeholder}
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-full p-0">
+          <Command>
+            <CommandInput
+              placeholder={`Search ${placeholder.toLowerCase()}...`}
+            />
+            <CommandEmpty>No {placeholder.toLowerCase()} found.</CommandEmpty>
+            <CommandGroup className="max-h-60 overflow-auto">
+              {items.map((item) => (
+                <CommandItem
+                  key={item.id}
+                  value={item.name}
+                  onSelect={() => {
+                    onChange(item.id.toString());
+                    setOpen(false);
+                  }}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      value === item.id.toString() ? "opacity-100" : "opacity-0"
+                    )}
+                  />
+                  {item.name}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </Command>
+        </PopoverContent>
+      </Popover>
     </Suspense>
   );
 };
@@ -155,16 +155,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <Card>
-      <CardContent className="p-4">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="font-semibold">{product.name}</h3>
-          <Badge className={stateColors[product.state]}>{product.state}</Badge>
-        </div>
-        <p className="text-sm text-gray-500">ID: {product.id}</p>
-        <p className="text-sm text-gray-500">Price: {product.price} ETH</p>
-      </CardContent>
-    </Card>
+      <Card>
+        <CardContent className="p-4">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="font-semibold">{product.name}</h3>
+            <Badge className={stateColors[product.state]}>
+              {product.state}
+            </Badge>
+          </div>
+          <p className="text-sm text-gray-500">ID: {product.id}</p>
+          <p className="text-sm text-gray-500">Price: {product.price} ETH</p>
+        </CardContent>
+      </Card>
     </Suspense>
   );
 };
@@ -310,67 +312,67 @@ const FarmerDashboard: React.FC<DashboardProps> = ({ contract, account }) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <div className="space-y-6">
-      <Head>
-        <title>Agrisupply chain</title>
-      </Head>
-      <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-gray-100">
-        <CardHeader className="flex items-center gap-2 p-6">
-          <Wheat className="w-6 h-6 text-green-600" />
-          <CardTitle className="text-xl font-semibold text-gray-700">
-            Create New Product
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-6 space-y-4">
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-          <Input
-            placeholder="Product Name"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-            className="bg-gray-50 border border-gray-200 rounded-md p-2"
-          />
-          <Input
-            placeholder="Base Price (ETH)"
-            type="number"
-            value={basePrice}
-            onChange={(e) => setBasePrice(e.target.value)}
-            className="bg-gray-50 border border-gray-200 rounded-md p-2"
-          />
-          <Button
-            onClick={createProduct}
-            className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02]"
-            disabled={!productName || !basePrice}
-          >
-            Create Product
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-gray-100">
-        <CardHeader className="p-6">
-          <CardTitle className="text-xl font-semibold text-gray-700">
-            My Products
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {products.length === 0 ? (
-              <p className="text-gray-500 col-span-2 text-center py-4">
-                No products found. Create your first product above.
-              </p>
-            ) : (
-              products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))
+      <div className="space-y-6">
+        <Head>
+          <title>Agrisupply chain</title>
+        </Head>
+        <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-gray-100">
+          <CardHeader className="flex items-center gap-2 p-6">
+            <Wheat className="w-6 h-6 text-green-600" />
+            <CardTitle className="text-xl font-semibold text-gray-700">
+              Create New Product
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 space-y-4">
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
             )}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+            <Input
+              placeholder="Product Name"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              className="bg-gray-50 border border-gray-200 rounded-md p-2"
+            />
+            <Input
+              placeholder="Base Price (ETH)"
+              type="number"
+              value={basePrice}
+              onChange={(e) => setBasePrice(e.target.value)}
+              className="bg-gray-50 border border-gray-200 rounded-md p-2"
+            />
+            <Button
+              onClick={createProduct}
+              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02]"
+              disabled={!productName || !basePrice}
+            >
+              Create Product
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md border border-gray-100">
+          <CardHeader className="p-6">
+            <CardTitle className="text-xl font-semibold text-gray-700">
+              My Products
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {products.length === 0 ? (
+                <p className="text-gray-500 col-span-2 text-center py-4">
+                  No products found. Create your first product above.
+                </p>
+              ) : (
+                products.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </Suspense>
   );
 };
@@ -479,110 +481,110 @@ const CollectorDashboard: React.FC<DashboardProps> = ({
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <div className="space-y-6">
-      <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200">
-        <CardHeader className="flex items-center gap-2 p-6">
-          <Box className="w-6 h-6 text-green-600" />
-          <CardTitle className="text-xl font-semibold text-gray-700">
-            Available Products for Collection
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-6 space-y-4">
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
+      <div className="space-y-6">
+        <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200">
+          <CardHeader className="flex items-center gap-2 p-6">
+            <Box className="w-6 h-6 text-green-600" />
+            <CardTitle className="text-xl font-semibold text-gray-700">
+              Available Products for Collection
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 space-y-4">
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {availableProducts.map((product) => (
-              <div
-                key={product.id}
-                className={`p-4 border rounded-lg cursor-pointer transition-all duration-300 transform hover:scale-105 ${
-                  selectedProductId === product.id
-                    ? "border-green-500 bg-green-50"
-                    : "border-gray-200 bg-white"
-                }`}
-                onClick={() => setSelectedProductId(product.id)}
-              >
-                <div className="flex justify-between items-start">
-                  <div className="space-y-2">
-                    <h3 className="font-medium text-gray-700">
-                      {product.name}
-                    </h3>
-                    <div className="text-sm text-gray-500">
-                      <p>Base Price: {product.basePrice} ETH</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {availableProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className={`p-4 border rounded-lg cursor-pointer transition-all duration-300 transform hover:scale-105 ${
+                    selectedProductId === product.id
+                      ? "border-green-500 bg-green-50"
+                      : "border-gray-200 bg-white"
+                  }`}
+                  onClick={() => setSelectedProductId(product.id)}
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <h3 className="font-medium text-gray-700">
+                        {product.name}
+                      </h3>
+                      <div className="text-sm text-gray-500">
+                        <p>Base Price: {product.basePrice} ETH</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {selectedProductId && (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">District</label>
-                  <SearchableSelect
-                    items={districtsData}
-                    value={selectedDistrict}
-                    onChange={(value) => {
-                      setSelectedDistrict(value);
-                      setSelectedLocalBody("");
-                    }}
-                    placeholder="Select District"
-                  />
+            {selectedProductId && (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">District</label>
+                    <SearchableSelect
+                      items={districtsData}
+                      value={selectedDistrict}
+                      onChange={(value) => {
+                        setSelectedDistrict(value);
+                        setSelectedLocalBody("");
+                      }}
+                      placeholder="Select District"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Local Body</label>
+                    <SearchableSelect
+                      items={filteredLocalBodies}
+                      value={selectedLocalBody}
+                      onChange={setSelectedLocalBody}
+                      placeholder="Select Local Body"
+                    />
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Local Body</label>
-                  <SearchableSelect
-                    items={filteredLocalBodies}
-                    value={selectedLocalBody}
-                    onChange={setSelectedLocalBody}
-                    placeholder="Select Local Body"
-                  />
-                </div>
-              </div>
+                <Input
+                  placeholder="Distance (km)"
+                  type="number"
+                  value={distance}
+                  onChange={(e) => setDistance(e.target.value)}
+                  className="bg-gray-50 border border-gray-200 rounded-md p-2 mt-4"
+                />
 
-              <Input
-                placeholder="Distance (km)"
-                type="number"
-                value={distance}
-                onChange={(e) => setDistance(e.target.value)}
-                className="bg-gray-50 border border-gray-200 rounded-md p-2 mt-4"
-              />
+                <Input
+                  placeholder="Your Collection Fee (ETH)"
+                  type="number"
+                  value={collectorFee}
+                  onChange={(e) => setCollectorFee(e.target.value)}
+                  className="bg-gray-50 border border-gray-200 rounded-md p-2 mt-4"
+                />
 
-              <Input
-                placeholder="Your Collection Fee (ETH)"
-                type="number"
-                value={collectorFee}
-                onChange={(e) => setCollectorFee(e.target.value)}
-                className="bg-gray-50 border border-gray-200 rounded-md p-2 mt-4"
-              />
+                <Button
+                  onClick={collectProduct}
+                  className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02] mt-4"
+                  disabled={
+                    !collectorFee ||
+                    !selectedDistrict ||
+                    !selectedLocalBody ||
+                    !distance
+                  }
+                >
+                  Collect and Pay
+                </Button>
+              </>
+            )}
+          </CardContent>
+        </Card>
 
-              <Button
-                onClick={collectProduct}
-                className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02] mt-4"
-                disabled={
-                  !collectorFee ||
-                  !selectedDistrict ||
-                  !selectedLocalBody ||
-                  !distance
-                }
-              >
-                Collect and Pay
-              </Button>
-            </>
-          )}
-        </CardContent>
-      </Card>
-
-      <div className="w-full h-96 rounded-lg overflow-hidden">
-        <GoogleMap />
+        <div className="w-full h-96 rounded-lg overflow-hidden">
+          <GoogleMap />
+        </div>
       </div>
-    </div>
     </Suspense>
   );
 };
@@ -599,7 +601,6 @@ const TransporterDashboard: React.FC<DashboardProps> = ({
   const [loading, setLoading] = useState(false);
   const { web3 } = useWeb3();
 
-  
   const fetchAvailableProducts = async () => {
     try {
       setLoading(true);
@@ -625,7 +626,7 @@ const TransporterDashboard: React.FC<DashboardProps> = ({
             Number(collectorFeeEth) + Number(transportFee)
           ).toString();
 
-          //PickupProduct 
+          //PickupProduct
           products.push({
             id: productInfo.id,
             name: productInfo.name,
@@ -655,7 +656,7 @@ const TransporterDashboard: React.FC<DashboardProps> = ({
     }
   }, [contract, account]);
 
-  //transportProduct 
+  //transportProduct
   const transportProduct = async () => {
     try {
       if (!selectedProductId) {
@@ -676,7 +677,7 @@ const TransporterDashboard: React.FC<DashboardProps> = ({
         setError("Product or Collector fee is not defined");
         return;
       }
-      
+
       const transporterFeeWei = web3.utils.toWei(
         product.transporterFee,
         "ether"
@@ -838,7 +839,7 @@ const DistributorDashboard: React.FC<DashboardProps> = ({
         setError("Web3 not initialized");
         return;
       }
-//manageProduct
+      //manageProduct
       const product = availableProducts.find((p) => p.id === selectedProductId);
       const distributorFeeWei = web3.utils.toWei(distributorFee, "ether");
       const transporterFeeWei = web3.utils.toWei(
@@ -941,7 +942,7 @@ const RetailerDashboard: React.FC<DashboardProps> = ({ contract, account }) => {
   const [loading, setLoading] = useState(false);
   const { web3 } = useWeb3();
 
-//fetchProduct
+  //fetchProduct
   const fetchAvailableProducts = async () => {
     try {
       setLoading(true);
@@ -1093,7 +1094,6 @@ export {
   DistributorDashboard,
   RetailerDashboard,
 };
-
 
 //History
 const TransactionHistory: React.FC<DashboardProps> = ({
@@ -1268,7 +1268,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
               <Wheat className="w-6 h-6" />
-              <h1 className="text-xl font-bold"><i>Agro </i><b>पथ</b></h1>
+              <h1 className="text-xl font-bold">
+                <i>Agro </i>
+                <b>bot</b>
+              </h1>
             </div>
             <div className="flex items-center gap-4">
               <LanguageSwitcher />
@@ -1303,7 +1306,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
       <footer className="container mx-auto px-4 py-6 mt-auto">
         <div className="text-center text-sm text-gray-500">
-          © 2024 <i>Agro </i><b>पथ</b>. All rights reserved.
+          © 2024 <i>Agro </i>
+          <b>bot</b>. All rights reserved.
         </div>
       </footer>
     </div>
@@ -1392,9 +1396,8 @@ const productIcons: { [key: string]: string } = {
   bowl_with_spoon: "🥣",
   chopsticks: "🥢",
   spoon: "🥄",
-  fork_and_knife: "🍽"
+  fork_and_knife: "🍽",
 };
-
 
 interface ProductHistoryLookupProps {
   contract: any;
@@ -1579,7 +1582,7 @@ interface ProductHistoryLookupProps {
 //                   </div>
 //                 </div>
 //               </div>
-              
+
 //               <Separator className="my-4" />
 
 //               <h3 className="font-semibold mb-4">Transaction History</h3>
@@ -1694,11 +1697,17 @@ interface StateLabels {
   [key: number]: string;
 }
 
-const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, web3, account }) => {
-  const [productId, setProductId] = useState<string>('');
-  const [error, setError] = useState<string>('');
+const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({
+  contract,
+  web3,
+  account,
+}) => {
+  const [productId, setProductId] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [productHistory, setProductHistory] = useState<ProductHistory | null>(null);
+  const [productHistory, setProductHistory] = useState<ProductHistory | null>(
+    null
+  );
 
   const stateLabels: StateLabels = {
     0: "Created",
@@ -1706,55 +1715,74 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
     2: "In Transit",
     3: "With Distributor",
     4: "With Retailer",
-    5: "Sold"
+    5: "Sold",
   };
 
   const fetchProductHistory = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!productId) {
-      setError('Please enter a product ID');
+      setError("Please enter a product ID");
       return;
     }
 
     setLoading(true);
-    setError('');
+    setError("");
     setProductHistory(null);
 
     try {
       console.log("Searching for product ID:", productId);
 
-      const productInfo: ProductInfo = await contract.methods.getProductBasicInfo(productId).call();
+      const productInfo: ProductInfo = await contract.methods
+        .getProductBasicInfo(productId)
+        .call();
       console.log("Product info:", productInfo);
 
-      const actors: ProductActors = await contract.methods.getProductActors(productId).call();
+      const actors: ProductActors = await contract.methods
+        .getProductActors(productId)
+        .call();
       console.log("Product actors:", actors);
 
       if (!productInfo.isValid) {
-        throw new Error('Product not found');
+        throw new Error("Product not found");
       }
 
       const currentUserAddress = account.toLowerCase();
       const consumerAddress = actors.consumer.toLowerCase();
 
       if (consumerAddress !== currentUserAddress) {
-        throw new Error('You are not authorized to view this product\'s history');
+        throw new Error(
+          "You are not authorized to view this product's history"
+        );
       }
 
-      const fees: ProductFees = await contract.methods.getProductFees(productId).call();
-      const totalPrice: string = await contract.methods.getTotalPrice(productId).call();
+      const fees: ProductFees = await contract.methods
+        .getProductFees(productId)
+        .call();
+      const totalPrice: string = await contract.methods
+        .getTotalPrice(productId)
+        .call();
 
       const productDetails: ProductDetails = {
         name: productInfo.name,
-        basePrice: web3.utils.fromWei(productInfo.basePrice.toString(), "ether"),
+        basePrice: web3.utils.fromWei(
+          productInfo.basePrice.toString(),
+          "ether"
+        ),
         collectorFee: web3.utils.fromWei(fees.collectorFee.toString(), "ether"),
-        transporterFee: web3.utils.fromWei(fees.transporterFee.toString(), "ether"),
-        distributorFee: web3.utils.fromWei(fees.distributorFee.toString(), "ether"),
+        transporterFee: web3.utils.fromWei(
+          fees.transporterFee.toString(),
+          "ether"
+        ),
+        distributorFee: web3.utils.fromWei(
+          fees.distributorFee.toString(),
+          "ether"
+        ),
         retailerFee: web3.utils.fromWei(fees.retailerFee.toString(), "ether"),
         totalPrice: web3.utils.fromWei(totalPrice.toString(), "ether"),
         location: {
           district: productInfo.district,
-          localBody: productInfo.localBody
-        }
+          localBody: productInfo.localBody,
+        },
       };
 
       type EventFilter = {
@@ -1766,13 +1794,22 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
       const eventFilter: EventFilter = {
         filter: { productId },
         fromBlock: 0,
-        toBlock: 'latest'
+        toBlock: "latest",
       };
 
-      const stateEvents = await contract.getPastEvents('ProductStateChanged', eventFilter);
-      const paymentEvents = await contract.getPastEvents('PaymentProcessed', eventFilter);
+      const stateEvents = await contract.getPastEvents(
+        "ProductStateChanged",
+        eventFilter
+      );
+      const paymentEvents = await contract.getPastEvents(
+        "PaymentProcessed",
+        eventFilter
+      );
 
-      const allEvents: BlockchainEvent[] = [...stateEvents, ...paymentEvents].map(event => ({
+      const allEvents: BlockchainEvent[] = [
+        ...stateEvents,
+        ...paymentEvents,
+      ].map((event) => ({
         transactionHash: event.transactionHash,
         blockNumber: Number(event.blockNumber),
         eventType: event.event,
@@ -1782,7 +1819,7 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
         amount: event.returnValues.amount
           ? web3.utils.fromWei(event.returnValues.amount.toString(), "ether")
           : undefined,
-        timestamp: null
+        timestamp: null,
       }));
 
       for (let event of allEvents) {
@@ -1796,13 +1833,16 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
 
       setProductHistory({
         details: productDetails,
-        events: allEvents
+        events: allEvents,
       });
-      setError('');
-
+      setError("");
     } catch (err) {
-      console.error('Error fetching product history:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch product history. Please try again.');
+      console.error("Error fetching product history:", err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to fetch product history. Please try again."
+      );
       setProductHistory(null);
     } finally {
       setLoading(false);
@@ -1866,7 +1906,7 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
                   </div>
                 </div>
               </div>
-              
+
               <Separator className="my-4" />
 
               <h3 className="font-semibold mb-4">Transaction History</h3>
@@ -1883,7 +1923,9 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
                       <div>
                         <h4 className="font-medium">
                           {event.eventType === "ProductStateChanged"
-                            ? `State Changed to ${stateLabels[Number(event.state)]}`
+                            ? `State Changed to ${
+                                stateLabels[Number(event.state)]
+                              }`
                             : "Payment Processed"}
                         </h4>
                         <p className="text-sm text-gray-500">
@@ -1893,12 +1935,14 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
                       {event.amount && <Badge>{event.amount} ETH</Badge>}
                     </div>
 
-                    {event.eventType === "PaymentProcessed" && event.from && event.to && (
-                      <div className="text-sm text-gray-600">
-                        <p>From: {event.from}</p>
-                        <p>To: {event.to}</p>
-                      </div>
-                    )}
+                    {event.eventType === "PaymentProcessed" &&
+                      event.from &&
+                      event.to && (
+                        <div className="text-sm text-gray-600">
+                          <p>From: {event.from}</p>
+                          <p>To: {event.to}</p>
+                        </div>
+                      )}
 
                     <p className="text-xs text-gray-400 mt-2">
                       Tx: {event.transactionHash}
@@ -1913,8 +1957,6 @@ const ProductHistoryLookup: React.FC<ProductHistoryLookupProps> = ({ contract, w
     </div>
   );
 };
-
-
 
 const CustomProductCard: React.FC<CustomProductCardProps> = ({
   product,
@@ -1989,7 +2031,18 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
       retailerFee: string;
       totalPrice: string;
     };
-  } | null>({ events: [], details: { name: '', basePrice: '', collectorFee: '', transporterFee: '', distributorFee: '', retailerFee: '', totalPrice: '' } });
+  } | null>({
+    events: [],
+    details: {
+      name: "",
+      basePrice: "",
+      collectorFee: "",
+      transporterFee: "",
+      distributorFee: "",
+      retailerFee: "",
+      totalPrice: "",
+    },
+  });
   const [historyLoading, setHistoryLoading] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -2145,8 +2198,9 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
 
       setCheckoutStatus({
         success: true,
-        message:
-          `Purchase completed successfully! Only retailer fees were paid.Product IDs: ${purchasedIds.join(", ")}`,
+        message: `Purchase completed successfully! Only retailer fees were paid.Product IDs: ${purchasedIds.join(
+          ", "
+        )}`,
       });
       console.log("Successfully purchased products with IDs:", purchasedIds);
       setCart([]); // Clear the cart after successful checkout
@@ -2185,8 +2239,10 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
         name: productInfo.name,
         basePrice: web3?.utils.fromWei(productInfo.basePrice, "ether") || "0",
         collectorFee: web3?.utils.fromWei(fees.collectorFee, "ether") || "0",
-        transporterFee: web3?.utils.fromWei(fees.transporterFee, "ether") || "0",
-        distributorFee: web3?.utils.fromWei(fees.distributorFee, "ether") || "0",
+        transporterFee:
+          web3?.utils.fromWei(fees.transporterFee, "ether") || "0",
+        distributorFee:
+          web3?.utils.fromWei(fees.distributorFee, "ether") || "0",
         retailerFee: web3?.utils.fromWei(fees.retailerFee, "ether") || "0",
         totalPrice: web3?.utils.fromWei(totalPrice, "ether") || "0",
       };
@@ -2247,7 +2303,8 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
         <header className="border-b">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
             <Link href="/" className="text-xl font-semibold text-green-700">
-            <i>Agro </i><b>पथ</b>
+              <i>Agro </i>
+              <b>bot</b>
             </Link>
             <nav className="hidden md:flex items-center gap-6">
               <Link href="/" className="text-sm">
@@ -2353,16 +2410,24 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
                 Browse By Category
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                <CategoryCard name="Vegetables" icon="🥬" isActive={true}/>
-                <CategoryCard name="Fruits" icon="🍎" isActive={true}/>
-                <CategoryCard name="Grains and cereals" icon="🌾" isActive={true}/>
+                <CategoryCard name="Vegetables" icon="🥬" isActive={true} />
+                <CategoryCard name="Fruits" icon="🍎" isActive={true} />
+                <CategoryCard
+                  name="Grains and cereals"
+                  icon="🌾"
+                  isActive={true}
+                />
                 <CategoryCard
                   name="Seasonal Specials"
                   icon="🌿"
                   isActive={true}
                 />
-                <CategoryCard name="Meat" icon="🥩" isActive={true}/>
-                <CategoryCard name="Organic produce" icon="🥗"  isActive={true}/>
+                <CategoryCard name="Meat" icon="🥩" isActive={true} />
+                <CategoryCard
+                  name="Organic produce"
+                  icon="🥗"
+                  isActive={true}
+                />
               </div>
             </div>
           </section>
@@ -2394,17 +2459,19 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
             </div>
           </section>
         </main>
-<section className="py-12 bg-gray-50">
-  <div className="container mx-auto px-4">
-    <h2 className="text-2xl font-semibold mb-8">Look Up Your Purchased Products</h2>
-    <ProductHistoryLookup 
-      contract={contract}
-      web3={web3}
-      account={account}
-    />
-  </div>
-</section>
-        
+        <section className="py-12 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-semibold mb-8">
+              Look Up Your Purchased Products
+            </h2>
+            <ProductHistoryLookup
+              contract={contract}
+              web3={web3}
+              account={account}
+            />
+          </div>
+        </section>
+
         <Footer />
 
         {/* Cart Dialog */}
@@ -2511,97 +2578,114 @@ const ProductMarketplace: React.FC<ProductMarketplaceProps> = ({
           </DialogContent>
         </Dialog>
       </div>
-    <Dialog
-      open={historyModal.isOpen}
-      onOpenChange={() => setHistoryModal({ isOpen: false, productId: null })}
-    >
-      <DialogContent className="max-w-2xl w-full sm:max-w-4xl overflow-hidden">
-        <DialogHeader>
-          <DialogTitle>Product History & Price Details</DialogTitle>
-        </DialogHeader>
+      <Dialog
+        open={historyModal.isOpen}
+        onOpenChange={() => setHistoryModal({ isOpen: false, productId: null })}
+      >
+        <DialogContent className="max-w-2xl w-full sm:max-w-4xl overflow-hidden">
+          <DialogHeader>
+            <DialogTitle>Product History & Price Details</DialogTitle>
+          </DialogHeader>
 
-        {historyLoading ? (
-          <div className="flex justify-center p-4">
-            <motion.div
-              className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 1 }}
-            />
-          </div>
-        ) : (
-          <motion.div
-            className="space-y-6 max-h-[70vh] overflow-y-auto p-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Price Breakdown Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Price Breakdown</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {[
-                    { label: "Base Price", value: productHistory?.details?.basePrice },
-                    { label: "Collector Fee", value: productHistory?.details?.collectorFee },
-                    { label: "Transporter Fee", value: productHistory?.details?.transporterFee },
-                    { label: "Distributor Fee", value: productHistory?.details?.distributorFee },
-                    { label: "Retailer Fee", value: productHistory?.details?.retailerFee },
-                  ].map((item, index) => (
-                    <div key={index} className="flex justify-between">
-                      <span>{item.label}:</span>
-                      <span>{item.value} ETH</span>
-                    </div>
-                  ))}
-                  <Separator />
-                  <div className="flex justify-between font-bold">
-                    <span>Total Price:</span>
-                    <span>{productHistory?.details?.totalPrice} ETH</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Transaction History */}
-            <div className="space-y-4">
-              {productHistory?.events?.map((event, index) => (
-                <motion.div
-                  key={`${event.transactionHash}-${index}`}
-                  className="border rounded-lg p-4 bg-white shadow-md"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: index * 0.1 }}
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h3 className="font-medium">
-                        {event.eventType === "ProductStateChanged"
-                          ? `State Changed to ${stateLabels[event.state]}`
-                          : "Payment Processed"}
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        {event.timestamp?.toLocaleString()}
-                      </p>
-                    </div>
-                    {event.amount && <Badge>{event.amount} ETH</Badge>}
-                  </div>
-
-                  {event.eventType === "PaymentProcessed" && (
-                    <div className="text-sm text-gray-600">
-                      <p>From: {event.from}</p>
-                      <p>To: {event.to}</p>
-                    </div>
-                  )}
-
-                  <p className="text-xs text-gray-400 mt-2">Tx: {event.transactionHash}</p>
-                </motion.div>
-              ))}
+          {historyLoading ? (
+            <div className="flex justify-center p-4">
+              <motion.div
+                className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1 }}
+              />
             </div>
-          </motion.div>
-        )}
-      </DialogContent>
-    </Dialog>
+          ) : (
+            <motion.div
+              className="space-y-6 max-h-[70vh] overflow-y-auto p-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Price Breakdown Card */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Price Breakdown</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {[
+                      {
+                        label: "Base Price",
+                        value: productHistory?.details?.basePrice,
+                      },
+                      {
+                        label: "Collector Fee",
+                        value: productHistory?.details?.collectorFee,
+                      },
+                      {
+                        label: "Transporter Fee",
+                        value: productHistory?.details?.transporterFee,
+                      },
+                      {
+                        label: "Distributor Fee",
+                        value: productHistory?.details?.distributorFee,
+                      },
+                      {
+                        label: "Retailer Fee",
+                        value: productHistory?.details?.retailerFee,
+                      },
+                    ].map((item, index) => (
+                      <div key={index} className="flex justify-between">
+                        <span>{item.label}:</span>
+                        <span>{item.value} ETH</span>
+                      </div>
+                    ))}
+                    <Separator />
+                    <div className="flex justify-between font-bold">
+                      <span>Total Price:</span>
+                      <span>{productHistory?.details?.totalPrice} ETH</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Transaction History */}
+              <div className="space-y-4">
+                {productHistory?.events?.map((event, index) => (
+                  <motion.div
+                    key={`${event.transactionHash}-${index}`}
+                    className="border rounded-lg p-4 bg-white shadow-md"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2, delay: index * 0.1 }}
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="font-medium">
+                          {event.eventType === "ProductStateChanged"
+                            ? `State Changed to ${stateLabels[event.state]}`
+                            : "Payment Processed"}
+                        </h3>
+                        <p className="text-sm text-gray-500">
+                          {event.timestamp?.toLocaleString()}
+                        </p>
+                      </div>
+                      {event.amount && <Badge>{event.amount} ETH</Badge>}
+                    </div>
+
+                    {event.eventType === "PaymentProcessed" && (
+                      <div className="text-sm text-gray-600">
+                        <p>From: {event.from}</p>
+                        <p>To: {event.to}</p>
+                      </div>
+                    )}
+
+                    <p className="text-xs text-gray-400 mt-2">
+                      Tx: {event.transactionHash}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
@@ -2627,7 +2711,7 @@ export default function Home({
       setLanguage(lang);
     }
   }, []);
-  const handleConnection = async () => { 
+  const handleConnection = async () => {
     try {
       setConnectionStatus("Connecting...");
       if (window.ethereum) {
@@ -2739,7 +2823,8 @@ export default function Home({
           <ProductMarketplace
             contract={contract}
             account={account || ""}
-            onRegister={() => setShowRegistration(true)}/>
+            onRegister={() => setShowRegistration(true)}
+          />
         );
     }
   };
@@ -2756,7 +2841,8 @@ export default function Home({
             </div>
             <div>
               <CardTitle className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Welcome to <i>Agro </i><b>पथ</b>
+                Welcome to <i>Agro </i>
+                <b>bot</b>
               </CardTitle>
               <p className="text-gray-500 mt-2">
                 Connect your wallet to start managing your agricultural supply
@@ -2839,7 +2925,8 @@ export default function Home({
             <div className="flex items-center space-x-4">
               <Wheat className="w-6 h-6 text-green-600" />
               <h1 className="text-xl font-bold text-green-700">
-              <i>Agro </i><b>पथ</b>
+                <i>Agro </i>
+                <b>bot</b>
               </h1>
             </div>
             <div className="flex items-center gap-4">
@@ -2910,7 +2997,10 @@ export default function Home({
 
       <footer className="container mx-auto px-4 py-6 mt-auto">
         <div className="flex justify-between items-center text-sm text-gray-500">
-          <span>© 2024 <i>Agro </i><b>पथ</b></span>
+          <span>
+            © 2024 <i>Agro </i>
+            <b>bot</b>
+          </span>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span>Connected to Blockchain</span>
