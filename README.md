@@ -20,7 +20,7 @@ Agroबट is a decentralized agricultural supply chain management system built 
 - **Truffle** – Development framework for Ethereum.
 - **Ganache** – Personal Ethereum blockchain for development.
 - **Metamask** – Browser wallet to interact with blockchain.
-- **Next.js** – Frontend framework.
+- **Next.js** – Frontend and backend framework.
 - **pnpm / npm** – Package managers.
 - **gemini** - Google's Chatbot to help the users
 
@@ -90,5 +90,14 @@ npm install
 Pnpm run dev
 #or
 npm run dev
+
+---
+
+## 🚀 Team Members
+
+- **Ashmita Gurung** – AI/ML, research .
+- **Rojesh Babu Dahal** – Design, solidity Smart contract.
+- **Gaurav Pandey** – AI/ML research, Editor.
+- **Prajwol Koirala** – Solidity / Full stack.
 
 
